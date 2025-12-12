@@ -29,6 +29,18 @@ public fun create_hero(name: String, image_url: String, power: u64, ctx: &mut Tx
         // Hints:
         // Use ctx.epoch_timestamp_ms() for timestamp
     //TODO: Use transfer::freeze_object() to make metadata immutable
+let hero = Hero{
+id: object::new(ctx),
+name,
+image_url,
+power,
+};
+transfer:public_transfer(nft,ctx.sender());
+let hero_metadata =HeroMetadata{
+id:object::new(ctx),
+timestamp:ctx.epoch_timestamp_ms(),
+};
+transfer::freeze_object(hero_metadata);
 }
 
 // ========= GETTER FUNCTIONS =========
