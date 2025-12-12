@@ -37,6 +37,7 @@ public fun create_arena(hero: Hero, ctx: &mut TxContext) {
     // TODO: Use transfer::share_object() to make it publicly tradeable
 let arena : arena = arena{
   id:object::new(ctx),
+  warrior:Hero,
   seller:ctx.sender(),
 };
 event::emit(ArenaCreated{
@@ -61,7 +62,13 @@ public fun battle(hero: Hero, arena: Arena, ctx: &mut TxContext) {
         // Hints:  
         // You have to emit this inside of the if else statements
     // TODO: Delete the battle place ID 
+{
+id:object::id(&hero),
+warrior,
+owner,
+};
 
+id:delete();
 }
 
 
