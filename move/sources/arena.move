@@ -36,13 +36,13 @@ public fun create_arena(hero: Hero, ctx: &mut TxContext) {
     // TODO: Emit ArenaCreated event with arena ID and timestamp (Don't forget to use ctx.epoch_timestamp_ms(), object::id(&arena))
     // TODO: Use transfer::share_object() to make it publicly tradeable
 let arena : arena = arena{
-id:object::new(ctx),
-seller:ctx.sender(),
+  id:object::new(ctx),
+  seller:ctx.sender(),
 };
 event::emit(ArenaCreated{
-id:object::id(&arena),
-seller:ctx.sender(),
-timestamp: ctx.epoch_timestamp_ms(),
+  id:object::id(&arena),
+  seller:ctx.sender(),
+  timestamp: ctx.epoch_timestamp_ms(),
 });
 transfer::share_object(arena);
 }
@@ -61,5 +61,7 @@ public fun battle(hero: Hero, arena: Arena, ctx: &mut TxContext) {
         // Hints:  
         // You have to emit this inside of the if else statements
     // TODO: Delete the battle place ID 
+
 }
+
 
